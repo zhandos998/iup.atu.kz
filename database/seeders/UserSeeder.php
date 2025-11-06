@@ -16,17 +16,16 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Создаём роли, если их ещё нет
-        $roles = [
-            'admin',
-            'teacher',
-            'student',
-            'methodist',
-            'dean'
-        ];
+        // $roles = [
+        //     'admin',
+        //     'teacher',
+        //     'head',
+        //     'dean'
+        // ];
 
-        foreach ($roles as $roleName) {
-            Role::firstOrCreate(['name' => $roleName]);
-        }
+        // foreach ($roles as $roleName) {
+        //     Role::firstOrCreate(['name' => $roleName]);
+        // }
 
         // Создаём пользователей
         $users = [
@@ -43,22 +42,16 @@ class UserSeeder extends Seeder
                 'roles' => ['teacher'],
             ],
             [
-                'name' => 'Student User',
-                'email' => 'student@iup.kz',
-                'password' => Hash::make('password'),
-                'roles' => ['student'],
-            ],
-            [
-                'name' => 'Methodist User',
-                'email' => 'methodist@iup.kz',
-                'password' => Hash::make('password'),
-                'roles' => ['methodist'],
-            ],
-            [
                 'name' => 'Dean User',
                 'email' => 'dean@iup.kz',
                 'password' => Hash::make('password'),
                 'roles' => ['dean'],
+            ],
+            [
+                'name' => 'Head User',
+                'email' => 'head@iup.kz',
+                'password' => Hash::make('password'),
+                'roles' => ['head'],
             ],
         ];
 

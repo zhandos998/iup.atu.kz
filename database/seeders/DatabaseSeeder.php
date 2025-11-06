@@ -20,6 +20,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,
+            CategorySeeder::class,
+            IndicatorSeeder::class,
+            // PermissionSeeder::class,
+            IndicatorPermissionSeeder::class,
         ]);
     }
 }
+// php artisan db:seed --class= IndicatorPermissionSeeder
