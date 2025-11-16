@@ -11,20 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
+
+
+        Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique(); // admin, teacher, student и т.д.
-            $table->string('label')->unique(); // admin, teacher, student и т.д.
+            $table->foreignId('faculty_id')->constrained()->onDelete('cascade');
+            $table->string('name');
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('departments');
     }
 };

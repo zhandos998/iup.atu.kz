@@ -15,7 +15,6 @@ class IndicatorController extends Controller
     public function index(Category $category)
     {
         $indicators = Indicator::where('category_id', $category->id)->get();
-
         return Inertia::render('Indicators/Index', [
             'category' => $category,
             'indicators' => $indicators

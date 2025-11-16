@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('code'); // 1.1.1 и т.д.
             $table->string('title', 511); // Наименование показателя
             $table->string('unit')->nullable(); // Единица измерения (например, "академический час")
+            $table->float('points')->default(1); // очки (вес индикатора)
             $table->text('note')->nullable(); // Примечание / описание
             $table->foreignId('parent_id')->nullable()->constrained('indicators')->nullOnDelete();
             $table->timestamps();

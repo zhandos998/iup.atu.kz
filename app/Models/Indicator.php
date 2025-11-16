@@ -17,4 +17,9 @@ class Indicator extends Model
     {
         return $this->hasMany(IndicatorValue::class);
     }
+
+    public function subs()
+    {
+        return $this->hasMany(IndicatorSub::class, 'indicator_id')->orderBy('id');
+    }
 }

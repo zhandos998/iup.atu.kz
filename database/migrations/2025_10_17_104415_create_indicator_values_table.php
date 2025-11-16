@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('indicator_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('plan')->nullable();
-            $table->string('fact')->nullable();
+            $table->integer('plan')->nullable();
+            $table->integer('fact')->nullable();
             $table->json('files')->nullable(); // массив файлов
             $table->timestamps();
         });

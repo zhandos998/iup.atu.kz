@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Permission;
+use App\Models\RolePermission;
 
 class PermissionSeeder extends Seeder
 {
@@ -18,8 +19,36 @@ class PermissionSeeder extends Seeder
             ['key' => 'edit_fact', 'label' => 'Редактировать факт'],
             ['key' => 'upload_file', 'label' => 'Добавлять файлы'],
             ['key' => 'delete_file', 'label' => 'Удалять файлы'],
+            ['key' => 'view', 'label' => 'Смотреть данные'],
         ];
 
         Permission::insert($permissions);
+        $role_permissions = [
+            ['role_id' => 1, 'permission_id' => 1],
+            ['role_id' => 1, 'permission_id' => 2],
+            ['role_id' => 1, 'permission_id' => 3],
+            ['role_id' => 1, 'permission_id' => 4],
+            ['role_id' => 1, 'permission_id' => 5],
+
+            ['role_id' => 2, 'permission_id' => 1],
+            ['role_id' => 2, 'permission_id' => 2],
+            ['role_id' => 2, 'permission_id' => 3],
+            ['role_id' => 2, 'permission_id' => 4],
+            ['role_id' => 2, 'permission_id' => 5],
+
+            ['role_id' => 3, 'permission_id' => 1],
+            ['role_id' => 3, 'permission_id' => 2],
+            ['role_id' => 3, 'permission_id' => 3],
+            ['role_id' => 3, 'permission_id' => 4],
+            ['role_id' => 3, 'permission_id' => 5],
+
+            ['role_id' => 4, 'permission_id' => 1],
+            ['role_id' => 4, 'permission_id' => 2],
+            ['role_id' => 4, 'permission_id' => 3],
+            ['role_id' => 4, 'permission_id' => 4],
+            ['role_id' => 4, 'permission_id' => 5],
+        ];
+
+        RolePermission::insert($role_permissions);
     }
 }

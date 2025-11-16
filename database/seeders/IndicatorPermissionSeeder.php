@@ -14,26 +14,26 @@ class IndicatorPermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        $indicators = Indicator::all();
+        // $indicators = Indicator::all();
 
-        foreach ($indicators as $indicator) {
-            IndicatorPermission::create([
-                'indicator_id' => $indicator->id,
-                'role' => 'teacher',
-                'can_edit_plan' => true,
-                'can_edit_fact' => true,
-                'can_add_files' => true,
-                'can_delete_files' => true,
-            ]);
+        // foreach ($indicators as $indicator) {
+        //     IndicatorPermission::create([
+        //         'indicator_id' => $indicator->id,
+        //         'role' => 'teacher',
+        //         'can_edit_plan' => true,
+        //         'can_edit_fact' => true,
+        //         'can_add_files' => true,
+        //         'can_delete_files' => true,
+        //     ]);
 
-            IndicatorPermission::create([
-                'indicator_id' => $indicator->id,
-                'role' => 'student',
-                'can_edit_plan' => false,
-                'can_edit_fact' => false,
-                'can_add_files' => false,
-                'can_delete_files' => false,
-            ]);
-        }
+        //     IndicatorPermission::create([
+        //         'indicator_id' => $indicator->id,
+        //         'role' => 'student',
+        //         'can_edit_plan' => false,
+        //         'can_edit_fact' => false,
+        //         'can_add_files' => false,
+        //         'can_delete_files' => false,
+        //     ]);
+        // }
     }
 }

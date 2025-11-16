@@ -67,4 +67,24 @@ class User extends Authenticatable
             ->whereHas('permissions', fn($q) => $q->where('key', $key))
             ->exists();
     }
+
+    public function faculty()
+    {
+        return $this->belongsTo(Faculty::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'user_permission');
+    }
+
+    public function indicatorValues()
+    {
+        return $this->hasMany(IndicatorValue::class, 'user_id');
+    }
 }
