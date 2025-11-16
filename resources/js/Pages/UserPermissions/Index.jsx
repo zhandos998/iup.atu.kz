@@ -76,7 +76,7 @@ export default function UserPermissionsIndex({
                         <option value="">Все роли</option>
                         {roles.map((r) => (
                             <option key={r.id} value={r.name}>
-                                {r.name}
+                                {r.label}
                             </option>
                         ))}
                     </select>
@@ -218,7 +218,7 @@ export default function UserPermissionsIndex({
                             fd.append("user_ids[]", id)
                         );
 
-                        router.post("/user-permissions/bulk-store", fd, {
+                        router.post("/user-permissions/bulk", fd, {
                             preserveScroll: true,
                         });
                     }}

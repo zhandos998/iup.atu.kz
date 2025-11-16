@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Inertia\Inertia;
 use App\Models\Category;
-use App\Models\IndicatorValue;
 use App\Models\Role;
 use App\Models\UserPermission;
-use Illuminate\Container\Attributes\DB;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 // use App\Models\IndicatorPermission;
 
@@ -60,18 +58,6 @@ class DashboardController extends Controller
             ->get()
             ->pluck('permission');
 
-        // dd($now);
-        // dd(UserPermission::with('permission')
-        //     ->where('user_id', $user->id)
-        //     ->where(function ($q) use ($now) {
-        //         $q->whereNull('starts_at')
-        //             ->orWhere('starts_at', '<=', $now);
-        //     })
-        //     ->where(function ($q) use ($now) {
-        //         $q->whereNull('expires_at')
-        //             ->orWhere('expires_at', '>', $now);
-        //     })->toSQL());
-
         // --- Объединяем все источники разрешений ---
         $permissions = $rolePermissions
             ->merge($userPermissionsTimed)
@@ -88,12 +74,12 @@ class DashboardController extends Controller
 
         foreach ($permissions as $permission) {
             match ($permission->key) {
-                'edit_plan'   => $user_permissions['can_edit_plan'] = true,
-                'edit_fact'   => $user_permissions['can_edit_fact'] = true,
+                'edit_plan' => $user_permissions['can_edit_plan'] = true,
+                'edit_fact' => $user_permissions['can_edit_fact'] = true,
                 'upload_file' => $user_permissions['can_add_files'] = true,
                 'delete_file' => $user_permissions['can_delete_files'] = true,
-                'view'        => $user_permissions['can_view'] = true,
-                default       => null,
+                'view' => $user_permissions['can_view'] = true,
+                default => null,
             };
         }
 

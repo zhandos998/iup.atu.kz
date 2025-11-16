@@ -15,6 +15,8 @@ class UserPermissionController extends Controller
 {
     public function index(Request $request)
     {
+        $auth = $request->user();
+
         $roleFilter = $request->input('role');
         $facultyFilter = $request->input('faculty_id');
         $departmentFilter = $request->input('department_id');
@@ -23,19 +25,26 @@ class UserPermissionController extends Controller
         $roles = Role::select('id', 'name', 'label')->get();
         $permissions = Permission::get();
 
-        // Загружаем факультеты и кафедры для фильтров
         $faculties = Faculty::select('id', 'name')->get();
         $departments = Department::select('id', 'name')->get();
 
-        // Фильтрация пользователей
+        // --- Фильтр пользователей ---
         $users = User::with(['roles:id,name,label', 'faculty:id,name', 'department:id,name'])
+            ->select('id', 'name', 'email', 'faculty_id', 'department_id')
+
+            // Фильтр по роли
             ->when(
                 $roleFilter,
-                fn($q) =>
-                $q->whereHas('roles', fn($r) => $r->where('name', $roleFilter))
+                fn($q) => $q->whereHas('roles', fn($r) => $r->where('name', $roleFilter))
             )
+
+            // Фильтр по факультету
             ->when($facultyFilter, fn($q) => $q->where('faculty_id', $facultyFilter))
+
+            // Фильтр по кафедре
             ->when($departmentFilter, fn($q) => $q->where('department_id', $departmentFilter))
+
+            // Фильтр по поиску
             ->when(
                 $search,
                 fn($q) =>
@@ -44,7 +53,20 @@ class UserPermissionController extends Controller
                         ->orWhere('email', 'like', "%$search%");
                 })
             )
-            ->select('id', 'name', 'email', 'faculty_id', 'department_id')
+
+            // --- ДОПОЛНИТЕЛЬНО: Ограничение прав доступа ---
+            // Если зав. кафедры → видит только свою кафедру
+            ->when(
+                $auth->roles->contains('name', 'head'),
+                fn($q) => $q->where('department_id', $auth->department_id)
+            )
+
+            // Если декан → видит только свой факультет
+            ->when(
+                $auth->roles->contains('name', 'dean'),
+                fn($q) => $q->where('faculty_id', $auth->faculty_id)
+            )
+
             ->orderBy('name')
             ->get();
 
@@ -70,6 +92,7 @@ class UserPermissionController extends Controller
             ],
         ]);
     }
+
 
 
     // Массовая выдача прав

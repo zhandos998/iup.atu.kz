@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'faculty_id',
+        'department_id',
     ];
 
     /**
@@ -64,7 +66,7 @@ class User extends Authenticatable
     public function hasPermission(string $key): bool
     {
         return $this->roles()
-            ->whereHas('permissions', fn($q) => $q->where('key', $key))
+            ->whereHas('permissions', fn ($q) => $q->where('key', $key))
             ->exists();
     }
 

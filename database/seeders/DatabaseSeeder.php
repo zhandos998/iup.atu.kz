@@ -30,4 +30,4 @@ class DatabaseSeeder extends Seeder
         ]);
     }
 }
-// php artisan db:seed --class= PermissionSeeder
+// php artisan db:seed --class= UserSeeder
