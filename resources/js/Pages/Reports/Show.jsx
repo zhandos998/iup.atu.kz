@@ -299,7 +299,8 @@ export default function ReportShow({
                 <div className="flex justify-end mb-4">
                     <a
                         href={`/reports/${teacher.id}/export`}
-                        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                        className="text-white px-4 py-2 rounded"
+                        style={{ backgroundColor: "#21397D" }}
                     >
                         ⬇️ Скачать Excel
                     </a>

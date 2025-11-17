@@ -47,6 +47,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/plans', [PlanOverviewController::class, 'index'])->name('plans.index');
     Route::get('/plans/summary', [PlanOverviewController::class, 'summary'])->name('plans.summary');
     Route::get('/plans/{user}', [PlanOverviewController::class, 'show'])->name('plans.show');
+    Route::get('/plans/summary/export', function () {
+        $date = now()->format('Y-m-d'); // или d.m.Y
+        return Excel::download(new SummaryReportExport, 'Общий_итог_преподавателей_' . $date . '.xlsx');
+    })->name('plans.summary.export');
 
     Route::delete('/indicator-files/{indicatorFile}', [IndicatorFileController::class, 'destroy'])->name('indicator-files.destroy');
 
@@ -77,7 +81,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reports/{user}', [ReportController::class, 'show'])->name('reports.show');
     Route::get('/reports/{user}/export', [ReportController::class, 'export'])->name('reports.export');
     Route::get('/departments/{id}/export', [DepartmentReportController::class, 'export'])->name('departments.export');
-    Route::get('/plans/summary/export', function () {
-        return Excel::download(new SummaryReportExport, 'Итог_преподавателей.xlsx');
-    })->name('plans.summary.export');
 });

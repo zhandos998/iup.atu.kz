@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, usePage, router } from "@inertiajs/react";
+import ApplicationLogo from "@/Components/ApplicationLogo";
 
 export default function AppLayout({ children }) {
     const { auth } = usePage().props;
@@ -15,11 +16,14 @@ export default function AppLayout({ children }) {
     return (
         <div className="flex flex-col min-h-screen bg-gray-100">
             {/* Шапка */}
-            <header className="fixed top-0 left-0 w-full bg-white shadow z-50">
+            <header
+                className="fixed top-0 left-0 w-full shadow z-50 text-white"
+                style={{ backgroundColor: "#21397D" }}
+            >
                 <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-                    <h1 className="text-xl font-bold text-blue-600">
-                        Индивидуальный план
-                    </h1>
+                    <Link href="/">
+                        <ApplicationLogo className="h-20 w-20 fill-current text-gray-500" />
+                    </Link>
 
                     <nav className="flex space-x-4">
                         {(roles.includes("head") ||
@@ -28,19 +32,19 @@ export default function AppLayout({ children }) {
                             <>
                                 <Link
                                     href="/dashboard"
-                                    className="text-gray-700 hover:text-blue-600"
+                                    className="hover:text-gray-200"
                                 >
                                     Главная
                                 </Link>
                                 <Link
                                     href="/plans"
-                                    className="text-gray-700 hover:text-blue-600"
+                                    className="hover:text-gray-200"
                                 >
                                     Планы
                                 </Link>
                                 <Link
                                     href="/user-permissions"
-                                    className="text-gray-700 hover:text-blue-600"
+                                    className="hover:text-gray-200"
                                 >
                                     Пользователи
                                 </Link>
@@ -51,7 +55,7 @@ export default function AppLayout({ children }) {
                             <>
                                 <Link
                                     href="/roles"
-                                    className="text-gray-700 hover:text-blue-600"
+                                    className="hover:text-gray-200"
                                 >
                                     Права
                                 </Link>
@@ -64,7 +68,7 @@ export default function AppLayout({ children }) {
                         <div className="relative">
                             <button
                                 onClick={() => setMenuOpen(!menuOpen)}
-                                className="text-sm text-gray-700 font-medium hover:text-blue-600"
+                                className="text-sm font-medium hover:text-gray-200"
                             >
                                 {auth.user.name} ▾
                             </button>
@@ -106,9 +110,13 @@ export default function AppLayout({ children }) {
             </main>
 
             {/* Футер */}
-            <footer className="bg-white border-t">
-                <div className="max-w-7xl mx-auto px-4 py-4 text-center text-sm text-gray-500">
-                    © {new Date().getFullYear()} iup.atu.kz — Все права защищены.
+            <footer
+                className="bg-white border-t"
+                style={{ backgroundColor: "#21397D" }}
+            >
+                <div className="max-w-7xl mx-auto px-4 py-4 text-center text-sm text-gray-200">
+                    © {new Date().getFullYear()} iup.atu.kz — Все права
+                    защищены.
                 </div>
             </footer>
         </div>

@@ -13,7 +13,8 @@ export default function Summary({ users }) {
                     </h1>
                     <a
                         href="/plans/summary/export"
-                        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+                        className="text-white px-4 py-2 rounded transition"
+                        style={{ backgroundColor: "#21397D" }}
                     >
                         ⬇️ Скачать Excel
                     </a>

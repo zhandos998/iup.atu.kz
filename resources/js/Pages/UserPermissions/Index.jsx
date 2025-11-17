@@ -114,7 +114,8 @@ export default function UserPermissionsIndex({
                     />
                     <button
                         type="submit"
-                        className="bg-blue-600 text-white rounded px-4"
+                        className="text-white rounded px-4"
+                        style={{ backgroundColor: "#21397D" }}
                     >
                         Фильтр
                     </button>

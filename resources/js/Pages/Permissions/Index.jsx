@@ -68,7 +68,8 @@ export default function PermissionsIndex({ permissions }) {
                         <button
                             type="submit"
                             disabled={processing}
-                            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                            className="text-white px-4 py-2 rounded"
+                            style={{ backgroundColor: "#21397D" }}
                         >
                             ➕ Добавить
                         </button>

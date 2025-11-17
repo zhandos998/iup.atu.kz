@@ -57,7 +57,10 @@ class ReportController extends Controller
     public function export($userId)
     {
         $user = User::findOrFail($userId);
-        $fileName = 'Отчёт_' . str_replace(' ', '_', $user->name) . '.xlsx';
+
+        $date = now()->format('Y-m-d'); // или d.m.Y
+        $fileName = 'Отчёт_ИП_' . str_replace(' ', '_', $user->name) . '_' . $date . '.xlsx';
+
 
         return Excel::download(new UserReportExport($userId), $fileName);
     }

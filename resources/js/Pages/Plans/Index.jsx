@@ -19,7 +19,8 @@ export default function PlansIndex() {
                 {roles.includes("admin") && (
                     <Link
                         href="/plans/summary"
-                        className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-150 mb-3"
+                        className="inline-flex items-center gap-2 text-white px-4 py-2 rounded-lg transition duration-150 mb-3"
+                        style={{ backgroundColor: "#21397D" }}
                     >
                         📊 Итог
                     </Link>
@@ -133,7 +134,11 @@ export default function PlansIndex() {
                                                     onClick={() =>
                                                         (window.location.href = `/departments/${dept.id}/export`)
                                                     }
-                                                    className="ml-2 text-sm bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+                                                    className="ml-2 mt-4 text-sm text-white px-3 py-1 rounded"
+                                                    style={{
+                                                        backgroundColor:
+                                                            "#21397D",
+                                                    }}
                                                 >
                                                     ⬇️ Скачать отчёт
                                                 </button>
