@@ -32,7 +32,7 @@ export default function Welcome({ auth }) {
 
                         <Link
                             href={route("register")}
-                            className="text-gray-800 px-4 py-2 rounded transition"
+                            className=" text-white px-4 py-2 rounded transition"
                             style={{ backgroundColor: "#21397D" }}
                         >
                             Регистрация

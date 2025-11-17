@@ -45,7 +45,9 @@ export default function PlanShow() {
                                     <table className="w-full border text-sm">
                                         <thead className="bg-gray-100">
                                             <tr>
-                                                <th className="border p-2">Код</th>
+                                                <th className="border p-2">
+                                                    Код
+                                                </th>
                                                 <th className="border p-2">
                                                     Наименование
                                                 </th>
@@ -66,7 +68,8 @@ export default function PlanShow() {
 
                                         <tbody>
                                             {cat.indicators.map((ind) => {
-                                                const value = ind.values?.[0] || {};
+                                                const value =
+                                                    ind.values?.[0] || {};
                                                 const files = value.files || [];
 
                                                 // ----- Категория-заголовок -----
@@ -88,41 +91,55 @@ export default function PlanShow() {
 
                                                 // ---- Подсчёт баллов индикатора ----
                                                 const planPoints =
-                                                    value.plan &&
-                                                    ind.points
-                                                        ? value.plan * ind.points
+                                                    value.plan && ind.points
+                                                        ? value.plan *
+                                                          ind.points
                                                         : 0;
 
                                                 const factPoints =
-                                                    value.fact &&
-                                                    ind.points
-                                                        ? value.fact * ind.points
+                                                    value.fact && ind.points
+                                                        ? value.fact *
+                                                          ind.points
                                                         : 0;
 
-                                                categoryPlanPoints += planPoints;
-                                                categoryFactPoints += factPoints;
+                                                categoryPlanPoints +=
+                                                    planPoints;
+                                                categoryFactPoints +=
+                                                    factPoints;
 
                                                 // ---- Вывод индикатора ----
                                                 return (
-                                                    <React.Fragment key={ind.id}>
+                                                    <React.Fragment
+                                                        key={ind.id}
+                                                    >
                                                         <tr>
-                                                            <td className="border p-2">{ind.code}</td>
+                                                            <td className="border p-2">
+                                                                {ind.code}
+                                                            </td>
                                                             <td className="border p-2">
                                                                 {ind.title}
-                                                                {ind.code?.startsWith("1.1") && (
+                                                                {ind.code?.startsWith(
+                                                                    "1.1"
+                                                                ) && (
                                                                     <button
                                                                         onClick={() =>
-                                                                            toggleSubs(ind.id)
+                                                                            toggleSubs(
+                                                                                ind.id
+                                                                            )
                                                                         }
                                                                         className="ml-2 text-xs text-blue-600 hover:text-blue-800"
                                                                     >
-                                                                        {openRows.includes(ind.id)
+                                                                        {openRows.includes(
+                                                                            ind.id
+                                                                        )
                                                                             ? "▲ Скрыть"
                                                                             : "▼ Показать"}
                                                                     </button>
                                                                 )}
                                                             </td>
-                                                            <td className="border p-2">{ind.unit}</td>
+                                                            <td className="border p-2">
+                                                                {ind.unit}
+                                                            </td>
 
                                                             {/* План в баллах */}
                                                             <td className="border p-2 text-center">
@@ -140,41 +157,61 @@ export default function PlanShow() {
 
                                                             {/* Файлы */}
                                                             <td className="border p-2 text-center">
-                                                                {files.length > 0 ? (
+                                                                {files.length >
+                                                                0 ? (
                                                                     <ul className="text-blue-600 text-sm space-y-1">
-                                                                        {files.map((file) => (
-                                                                            <li key={file.id}>
-                                                                                <a
-                                                                                    href={`/storage/${file.path}`}
-                                                                                    target="_blank"
-                                                                                    className="underline hover:text-blue-800"
-                                                                                >
-                                                                                    📎{" "}
-                                                                                    {
-                                                                                        file.original_name
+                                                                        {files.map(
+                                                                            (
+                                                                                file
+                                                                            ) => (
+                                                                                <li
+                                                                                    key={
+                                                                                        file.id
                                                                                     }
-                                                                                </a>
-                                                                            </li>
-                                                                        ))}
+                                                                                >
+                                                                                    <a
+                                                                                        href={`/storage/${file.path}`}
+                                                                                        target="_blank"
+                                                                                        className="underline hover:text-blue-800"
+                                                                                    >
+                                                                                        📎{" "}
+                                                                                        {
+                                                                                            file.original_name
+                                                                                        }
+                                                                                    </a>
+                                                                                </li>
+                                                                            )
+                                                                        )}
                                                                     </ul>
                                                                 ) : (
                                                                     <span className="text-gray-400 text-sm">
-                                                                        Нет файлов
+                                                                        Нет
+                                                                        файлов
                                                                     </span>
                                                                 )}
                                                             </td>
                                                         </tr>
 
                                                         {/* Подиндикаторы */}
-                                                        {ind.code?.startsWith("1.1") &&
-                                                            openRows.includes(ind.id) && (
+                                                        {ind.code?.startsWith(
+                                                            "1.1"
+                                                        ) &&
+                                                            openRows.includes(
+                                                                ind.id
+                                                            ) && (
                                                                 <tr className="bg-gray-50">
-                                                                    <td colSpan="6" className="p-4">
+                                                                    <td
+                                                                        colSpan="6"
+                                                                        className="p-4"
+                                                                    >
                                                                         <h4 className="font-semibold mb-2">
                                                                             Подиндикаторы
                                                                         </h4>
 
-                                                                        {ind.subs?.length > 0 ? (
+                                                                        {ind
+                                                                            .subs
+                                                                            ?.length >
+                                                                        0 ? (
                                                                             <table className="w-full border text-sm">
                                                                                 <thead className="bg-gray-100">
                                                                                     <tr>
@@ -185,13 +222,16 @@ export default function PlanShow() {
                                                                                             Наименование
                                                                                         </th>
                                                                                         <th className="border p-2">
-                                                                                            Ед. изм.
+                                                                                            Ед.
+                                                                                            изм.
                                                                                         </th>
                                                                                         <th className="border p-2 text-center">
-                                                                                            План (баллы)
+                                                                                            План
+                                                                                            (баллы)
                                                                                         </th>
                                                                                         <th className="border p-2 text-center">
-                                                                                            Факт (баллы)
+                                                                                            Факт
+                                                                                            (баллы)
                                                                                         </th>
                                                                                         <th className="border p-2 text-center">
                                                                                             Файлы
@@ -199,80 +239,105 @@ export default function PlanShow() {
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
-                                                                                    {ind.subs.map((sub) => {
-                                                                                        const subPlanPoints =
-                                                                                            sub.plan && ind.points
-                                                                                                ? sub.plan * ind.points
-                                                                                                : 0;
+                                                                                    {ind.subs.map(
+                                                                                        (
+                                                                                            sub
+                                                                                        ) => {
+                                                                                            const subPlanPoints =
+                                                                                                sub.plan &&
+                                                                                                ind.points
+                                                                                                    ? sub.plan *
+                                                                                                      ind.points
+                                                                                                    : 0;
 
-                                                                                        const subFactPoints =
-                                                                                            sub.fact && ind.points
-                                                                                                ? sub.fact * ind.points
-                                                                                                : 0;
+                                                                                            const subFactPoints =
+                                                                                                sub.fact &&
+                                                                                                ind.points
+                                                                                                    ? sub.fact *
+                                                                                                      ind.points
+                                                                                                    : 0;
 
-                                                                                        categoryPlanPoints += subPlanPoints;
-                                                                                        categoryFactPoints += subFactPoints;
+                                                                                            categoryPlanPoints +=
+                                                                                                subPlanPoints;
+                                                                                            categoryFactPoints +=
+                                                                                                subFactPoints;
 
-                                                                                        return (
-                                                                                            <tr key={sub.id}>
-                                                                                                <td className="border p-2 pl-6">
-                                                                                                    {sub.code}
-                                                                                                </td>
-                                                                                                <td className="border p-2">
-                                                                                                    {sub.title ?? "—"}
-                                                                                                </td>
-                                                                                                <td className="border p-2">
-                                                                                                    {ind.unit}
-                                                                                                </td>
-                                                                                                <td className="border p-2 text-center">
-                                                                                                    {sub.plan
-                                                                                                        ? `${sub.plan} × ${ind.points} = ${subPlanPoints}`
-                                                                                                        : "—"}
-                                                                                                </td>
-                                                                                                <td className="border p-2 text-center">
-                                                                                                    {sub.fact
-                                                                                                        ? `${sub.fact} × ${ind.points} = ${subFactPoints}`
-                                                                                                        : "—"}
-                                                                                                </td>
-                                                                                                <td className="border p-2 text-center">
-                                                                                                    {sub.files?.length >
-                                                                                                    0 ? (
-                                                                                                        <ul className="text-blue-600 text-sm space-y-1">
-                                                                                                            {sub.files.map(
-                                                                                                                (file) => (
-                                                                                                                    <li
-                                                                                                                        key={
-                                                                                                                            file.id
-                                                                                                                        }
-                                                                                                                    >
-                                                                                                                        <a
-                                                                                                                            href={`/storage/${file.path}`}
-                                                                                                                            target="_blank"
-                                                                                                                            className="underline hover:text-blue-800"
-                                                                                                                        >
-                                                                                                                            📎{" "}
-                                                                                                                            {
-                                                                                                                                file.original_name
+                                                                                            return (
+                                                                                                <tr
+                                                                                                    key={
+                                                                                                        sub.id
+                                                                                                    }
+                                                                                                >
+                                                                                                    <td className="border p-2 pl-6">
+                                                                                                        {
+                                                                                                            sub.code
+                                                                                                        }
+                                                                                                    </td>
+                                                                                                    <td className="border p-2">
+                                                                                                        {sub.title ??
+                                                                                                            "—"}
+                                                                                                    </td>
+                                                                                                    <td className="border p-2">
+                                                                                                        {
+                                                                                                            ind.unit
+                                                                                                        }
+                                                                                                    </td>
+                                                                                                    <td className="border p-2 text-center">
+                                                                                                        {sub.plan
+                                                                                                            ? `${sub.plan} × ${ind.points} = ${subPlanPoints}`
+                                                                                                            : "—"}
+                                                                                                    </td>
+                                                                                                    <td className="border p-2 text-center">
+                                                                                                        {sub.fact
+                                                                                                            ? `${sub.fact} × ${ind.points} = ${subFactPoints}`
+                                                                                                            : "—"}
+                                                                                                    </td>
+                                                                                                    <td className="border p-2 text-center">
+                                                                                                        {sub
+                                                                                                            .files
+                                                                                                            ?.length >
+                                                                                                        0 ? (
+                                                                                                            <ul className="text-blue-600 text-sm space-y-1">
+                                                                                                                {sub.files.map(
+                                                                                                                    (
+                                                                                                                        file
+                                                                                                                    ) => (
+                                                                                                                        <li
+                                                                                                                            key={
+                                                                                                                                file.id
                                                                                                                             }
-                                                                                                                        </a>
-                                                                                                                    </li>
-                                                                                                                )
-                                                                                                            )}
-                                                                                                        </ul>
-                                                                                                    ) : (
-                                                                                                        <span className="text-gray-400 text-sm">
-                                                                                                            Нет файлов
-                                                                                                        </span>
-                                                                                                    )}
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                        );
-                                                                                    })}
+                                                                                                                        >
+                                                                                                                            <a
+                                                                                                                                href={`/storage/${file.path}`}
+                                                                                                                                target="_blank"
+                                                                                                                                className="underline hover:text-blue-800"
+                                                                                                                            >
+                                                                                                                                📎{" "}
+                                                                                                                                {
+                                                                                                                                    file.original_name
+                                                                                                                                }
+                                                                                                                            </a>
+                                                                                                                        </li>
+                                                                                                                    )
+                                                                                                                )}
+                                                                                                            </ul>
+                                                                                                        ) : (
+                                                                                                            <span className="text-gray-400 text-sm">
+                                                                                                                Нет
+                                                                                                                файлов
+                                                                                                            </span>
+                                                                                                        )}
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            );
+                                                                                        }
+                                                                                    )}
                                                                                 </tbody>
                                                                             </table>
                                                                         ) : (
                                                                             <p className="text-gray-500 text-sm">
-                                                                                Подиндикаторов нет
+                                                                                Подиндикаторов
+                                                                                нет
                                                                             </p>
                                                                         )}
                                                                     </td>
@@ -284,7 +349,10 @@ export default function PlanShow() {
 
                                             {/* ---- ИТОГО ПО КАТЕГОРИИ ---- */}
                                             <tr className="bg-blue-50 font-semibold">
-                                                <td colSpan="3" className="border p-2">
+                                                <td
+                                                    colSpan="3"
+                                                    className="border p-2"
+                                                >
                                                     Итого по категории
                                                 </td>
                                                 <td className="border p-2 text-center">
@@ -293,15 +361,17 @@ export default function PlanShow() {
                                                 <td className="border p-2 text-center">
                                                     {categoryFactPoints}
                                                 </td>
-                                                <td className="border p-2 text-center">—</td>
+                                                <td className="border p-2 text-center">
+                                                    —
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
 
                                 {/* Добавляем в общий итог */}
-                                {(totalPlanPoints += categoryPlanPoints)}
-                                {(totalFactPoints += categoryFactPoints)}
+                                {void (totalPlanPoints += categoryPlanPoints)}
+                                {void (totalFactPoints += categoryFactPoints)}
                             </div>
                         );
                     })
@@ -318,17 +388,34 @@ export default function PlanShow() {
                     <table className="w-full border text-sm">
                         <thead className="bg-gray-100">
                             <tr>
-                                <th className="border p-2 text-center">План (баллы)</th>
-                                <th className="border p-2 text-center">Факт (баллы)</th>
+                                <th className="border p-2 text-center">
+                                    План (баллы)
+                                </th>
+                                <th className="border p-2 text-center">
+                                    Факт (баллы)
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr className="bg-blue-50 font-semibold">
-                                <td className="border p-2 text-center">{totalPlanPoints}</td>
-                                <td className="border p-2 text-center">{totalFactPoints}</td>
+                                <td className="border p-2 text-center">
+                                    {totalPlanPoints}
+                                </td>
+                                <td className="border p-2 text-center">
+                                    {totalFactPoints}
+                                </td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+                <div className="mt-5">
+                    <a
+                        href={`/reports/${teacher.id}/export`}
+                        className="text-white px-4 py-2 rounded-lg text-sm transition"
+                        style={{ backgroundColor: "#21397D" }}
+                    >
+                        ⬇️ Скачать отчёт
+                    </a>
                 </div>
             </div>
         </AppLayout>
